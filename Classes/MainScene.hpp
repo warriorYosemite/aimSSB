@@ -15,6 +15,7 @@
 #include "ui/UIWidget.h"
 #include "extensions/cocos-ext.h"
 #include "ui/UIPageView.h"
+#include "SideLayer.hpp"
 
 using namespace cocos2d::ui;
 USING_NS_CC;
@@ -40,12 +41,20 @@ public:
     cocos2d::ui::PageView* m_pageView;
     
     int m_numOfPages;
+    bool isReverse;
     
     void createBackground();
     void createPageView();
+    void updatePages(float dt);
+    
     void pageViewEvent(cocos2d::Ref *sender , cocos2d::ui::PageView::EventType type );
     void appendCubicBezier(int startPoint, std::vector<Vec2>& verts, const Vec2& from, const Vec2& control1, const Vec2& control2, const Vec2& to, uint32_t segments);
     Node* createRoundedRectMaskNode(Size size, float radius, float borderWidth, int cornerSegments);
+    
+    
+    
+    void listItemCallback(Ref* pSender);
+    void shareItemCallBack(Ref* pSender);
     
     CREATE_FUNC(MainScene);
     

@@ -10,9 +10,10 @@
 #include "AppDelegate.h"
 #include "constant.h"
 
-
 USING_NS_CC_EXT;
 using namespace std;
+
+int curPageIndex;
 
 Scene* MainScene::createScene()
 {
@@ -47,6 +48,8 @@ void MainScene::onEnter()
     Layer::onEnter();
     
     m_keyboardListener = NULL;
+    isReverse = false;
+    
     visibleSize = Director::getInstance()->getVisibleSize();
 
     auto dispatcher = Director::getInstance()->getEventDispatcher();
@@ -63,9 +66,33 @@ void MainScene::onEnter()
     Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(m_keyboardListener, this);
     
     createBackground();
-    
     createPageView();
+    
+    Node::onEnter();
+    curPageIndex = 0;
+    this->schedule(CC_SCHEDULE_SELECTOR(MainScene::updatePages), 3);
 }
+
+void MainScene::updatePages(float dt){
+    
+    if (curPageIndex == m_numOfPages -1){
+        isReverse = true;
+    }
+    else if (curPageIndex == 0){
+    
+        isReverse = false;
+    }
+    
+    if (!isReverse){
+        curPageIndex++;
+    }else{
+        
+        curPageIndex--;
+    }
+    
+    m_pageView->scrollToPage(curPageIndex);
+}
+
 
 void MainScene::createBackground(){
 
@@ -80,6 +107,34 @@ void MainScene::createBackground(){
     Label* headerText = Label::createWithTTF("AIM SSB",FONT_ARM_WRESTLER,60);
     headerText->setPosition(Vec2(headerLayer->getContentSize().width * 0.5, headerLayer->getContentSize().height * 0.5));
     headerLayer->addChild(headerText);
+    
+    Sprite* listSprite =  Sprite::create("list.png");
+    MenuItemSprite* listItem = MenuItemSprite::create(listSprite, listSprite,CC_CALLBACK_1(MainScene::listItemCallback, this));
+    
+    auto listMenu = Menu::create(listItem, NULL);
+    listMenu->setPosition(Vec2(listItem->getContentSize().width, headerLayer->getContentSize().height * 0.5));
+    headerLayer->addChild(listMenu);
+    
+    Sprite* shareImage =  Sprite::create("share.png");
+    MenuItemSprite* shareItem = MenuItemSprite::create(shareImage, shareImage,CC_CALLBACK_1(MainScene::shareItemCallBack, this));
+    
+    auto shareMenu = Menu::create(shareItem, NULL);
+    shareMenu->setPosition(Vec2(headerLayer->getContentSize().width - shareItem->getContentSize().width * 0.7, headerLayer->getContentSize().height * 0.5));
+    headerLayer->addChild(shareMenu);
+
+}
+
+void MainScene::shareItemCallBack(Ref* pSender){
+
+    CCLOG("Inside share item callback");
+    
+}
+
+void MainScene::listItemCallback(Ref* pSender){
+
+    CCLOG("inside list item callback");
+    SideLayer* sideLayerE = SideLayer::createLayer();
+    this->addChild(sideLayerE, 2);
 
 }
 
@@ -91,10 +146,7 @@ void MainScene::createPageView(){
     m_pageView->setPosition(Vec2(visibleSize.width * 0.5,visibleSize.height - visibleSize.height * 0.1));
     m_pageView->addEventListener(CC_CALLBACK_2(MainScene::pageViewEvent, this));
     m_pageView->setColor(Color3B::GRAY);
-    
-//    m_pageView->autoScroll(1);
-    
-    this->addChild(m_pageView , 3);
+    this->addChild(m_pageView, 1 );
     
     
     m_numOfPages = 5;
@@ -233,13 +285,3 @@ void MainScene::onExit()
     Layer::onExit();
     
 }
-
-
-
-
-
-
-
-
-
-
