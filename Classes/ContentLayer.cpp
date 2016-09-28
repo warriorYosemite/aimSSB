@@ -143,7 +143,7 @@ TableViewCell* ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)
         std::string formattedHeadline = AppDelegate::getDelegate()->getTrimmedStringWithRange(headingText, 80);
         formattedHeadline.insert(40,"-\n");
         
-        Label* headline = Label::createWithTTF(formattedHeadline, FONT_HEADLINE, 20);
+        Label* headline = Label::createWithTTF(formattedHeadline, FONT_HEADLINE, 21);
         headline->setAnchorPoint(Vec2(0, 0.5));
         headline->setColor(Color3B::BLACK);
         headline->setPosition(Vec2(200, cellBg->getContentSize().height * 0.75));

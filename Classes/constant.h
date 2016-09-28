@@ -15,5 +15,7 @@
 #define FONT_ARIAL              "fonts/arial.ttf"
 #define FONT_CONTENT            "fonts/Alice-Regular.ttf"
 
+#define ICON_PATH               "icons/"
+
 
 #endif // __CONSTANTS_H__
