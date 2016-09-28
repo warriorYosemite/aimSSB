@@ -10,10 +10,15 @@
 #include "AppDelegate.h"
 #include "constant.h"
 
+
 USING_NS_CC_EXT;
 using namespace std;
 
 int curPageIndex;
+
+
+#define FONT_SIZE_MENUITEM                  27
+
 
 Scene* MainScene::createScene()
 {
@@ -48,6 +53,7 @@ void MainScene::onEnter()
     Layer::onEnter();
     
     m_keyboardListener = NULL;
+    contentLayerE = NULL;
     isReverse = false;
     
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -67,10 +73,25 @@ void MainScene::onEnter()
     
     createBackground();
     createPageView();
+    setDataLatestItem();
+    setDataNotificationItem();
+    
+    createMenuItems();
+    createContentHolder();
     
     Node::onEnter();
     curPageIndex = 0;
     this->schedule(CC_SCHEDULE_SELECTOR(MainScene::updatePages), 3);
+}
+
+
+void MainScene::createContentHolder(){
+    
+    contentLayerE = ContentLayer::createLayer(visibleSize.width , visibleSize.height * 0.5);
+    contentLayerE->setPosition(Vec2(0,0));
+    contentLayerE->setContentType(CONTENT_LATEST_POST);
+    contentLayerE->setContentList(m_latestItemsList, false);
+    this->addChild(contentLayerE);
 }
 
 void MainScene::updatePages(float dt){
@@ -124,6 +145,169 @@ void MainScene::createBackground(){
 
 }
 
+void MainScene::createMenuItems(){
+
+    Scale9Sprite* menuImage1 = Scale9Sprite::create("scaleableImage.png");
+    Scale9Sprite* menuImage2 = Scale9Sprite::create("scaleableImage.png");
+    Scale9Sprite* menuImage3 = Scale9Sprite::create("scaleableImage.png");
+    
+    Scale9Sprite* menuImage1Pressed = Scale9Sprite::create("scaleableImage.png");
+    Scale9Sprite* menuImage2Pressed = Scale9Sprite::create("scaleableImage.png");
+    Scale9Sprite* menuImage3Pressed = Scale9Sprite::create("scaleableImage.png");
+    
+    
+    
+    float imageWidth = visibleSize.width * 0.3;
+    float imageHeight = 70;
+    
+    menuImage1->setContentSize(Size(imageWidth, imageHeight));
+    menuImage2->setContentSize(Size(imageWidth, imageHeight));
+    menuImage3->setContentSize(Size(imageWidth, imageHeight));
+    
+    menuImage1Pressed->setContentSize(Size(imageWidth, imageHeight));
+    menuImage2Pressed->setContentSize(Size(imageWidth, imageHeight));
+    menuImage3Pressed->setContentSize(Size(imageWidth, imageHeight));
+    
+    menuImage1Pressed->setScale(0.95);
+    menuImage2Pressed->setScale(0.95);
+    menuImage3Pressed->setScale(0.95);
+    
+    Label* latestLabel = Label::createWithTTF("Latest Post", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    latestLabel->setPosition(Vec2(menuImage1->getContentSize().width * 0.5, menuImage1->getContentSize().height * 0.5));
+    menuImage1->addChild(latestLabel);
+    
+    Label* ssbLabel = Label::createWithTTF("SSB Guide", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    ssbLabel->setPosition(Vec2(menuImage2->getContentSize().width * 0.5, menuImage2->getContentSize().height * 0.5));
+    menuImage2->addChild(ssbLabel);
+    
+    Label* notificationLabel = Label::createWithTTF("Notifications", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    notificationLabel->setPosition(Vec2(menuImage3->getContentSize().width * 0.5, menuImage3->getContentSize().height * 0.5));
+    menuImage3->addChild(notificationLabel);
+    
+    //for pressed effect
+    Label* latestLabel2 = Label::createWithTTF("Latest Post", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    latestLabel2->setPosition(Vec2(menuImage1Pressed->getContentSize().width * 0.5, menuImage1Pressed->getContentSize().height * 0.5));
+    menuImage1Pressed->addChild(latestLabel2);
+    
+    Label* ssbLabel2 = Label::createWithTTF("SSB Guide", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    ssbLabel2->setPosition(Vec2(menuImage2Pressed->getContentSize().width * 0.5, menuImage2Pressed->getContentSize().height * 0.5));
+    menuImage2Pressed->addChild(ssbLabel2);
+    
+    Label* notificationLabel2 = Label::createWithTTF("Notifications", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    notificationLabel2->setPosition(Vec2(menuImage3Pressed->getContentSize().width * 0.5, menuImage3Pressed->getContentSize().height * 0.5));
+    menuImage3Pressed->addChild(notificationLabel2);
+    
+    
+    
+    latestPostItem = MenuItemSprite::create(menuImage1, menuImage1Pressed, CC_CALLBACK_1(MainScene::latestPostCallBack,this));
+    ssbGuideItem = MenuItemSprite::create(menuImage2, menuImage2Pressed, CC_CALLBACK_1(MainScene::ssbGuideCallBack,this));
+    notificationItem = MenuItemSprite::create(menuImage3, menuImage3Pressed, CC_CALLBACK_1(MainScene::notificationCallBack,this));
+    
+    this->gameSelectionMenuItems.pushBack(latestPostItem);
+    this->gameSelectionMenuItems.pushBack(ssbGuideItem);
+    this->gameSelectionMenuItems.pushBack(notificationItem);
+    
+    
+    latestPostItem->setPosition(Vec2(latestPostItem->getContentSize().width * 0.6, visibleSize.height * 0.55));
+    ssbGuideItem->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.55));
+    notificationItem->setPosition(Vec2(visibleSize.width - notificationItem->getContentSize().width * 0.6, visibleSize.height * 0.55));
+    
+    auto menu = Menu::createWithArray(gameSelectionMenuItems);
+    CCLOG("menu created");
+    menu->setPosition(Point::ZERO);
+    this->addChild(menu);
+
+}
+
+void MainScene::setDataLatestItem(){
+
+    ItemsDetailStruct* item1 = new ItemsDetailStruct();
+    item1->m_heading = "Uri attack: Security agencies suspect LeT hand,seized maps depict local topography";
+    item1->m_content = "The maps showed various places of Uri including the Brigade Headquarters and other installations of the town, about 75 km North of Srinagar.";
+    item1->m_imageURL = "latest.jpg";
+    
+    m_latestItemsList.push_back(item1);
+    
+    ItemsDetailStruct* item2 = new ItemsDetailStruct();
+    item2->m_heading = "At 10, Burhan Wani wanted to join Indian Army, says father";
+    item2->m_content = "Muzaffar Wani, the father of slain Hizbul Mujahideen commander Burhan Wani, whose encounter death triggered the continuing cycle of violence in Kashmir.";
+    
+    item2->m_imageURL = "latest2.jpg";
+    m_latestItemsList.push_back(item2);
+    
+    ItemsDetailStruct* item3 = new ItemsDetailStruct();
+    item3->m_heading = "PM Modi Won't Go To Pak, 3 Other Nations Join India In Boycott: 10 Facts";
+    item3->m_content = "Within hours of Prime Minister Narendra Modi confirming he will not attend a regional SAARC summit in Pakistan, three other countries have opted out of the November session, which will have to be re-located.";
+    
+    item3->m_imageURL = "latest3.jpg";
+    m_latestItemsList.push_back(item3);
+    
+    ItemsDetailStruct* item4 = new ItemsDetailStruct();
+    item4->m_heading = "INS Viraat: History of the world’s oldest aircraft carrier";
+    item4->m_content = "After 29 years of service to the Indian Navy, the world’s oldest aircraft carrier INS Viraat is set to bid adieu.";
+    
+    item4->m_imageURL = "latest4.jpg";
+    m_latestItemsList.push_back(item4);
+    
+    ItemsDetailStruct* item5 = new ItemsDetailStruct();
+    item5->m_heading = "After MNS threat, MS Dhoni: The Untold Story boycotted in Pakistan";
+    item5->m_content = "Pakistani distributors have decided not to release MS Dhoni biopic, MS Dhoni: The Untold Story.";
+    
+    item5->m_imageURL = "latest5.jpg";
+    m_latestItemsList.push_back(item5);
+
+}
+
+void MainScene::setDataNotificationItem(){
+
+    ItemsDetailStruct* item1 = new ItemsDetailStruct();
+    item1->m_heading = "Indian Army 10+2 TES 2016 Apply Online for 90 Posts";
+    item1->m_imageURL = "notification1.jpg";
+    
+    m_notificationsItemsList.push_back(item1);
+    
+    ItemsDetailStruct* item2 = new ItemsDetailStruct();
+    item2->m_heading = "On 8 January 2009 the Indian Naval Academy, was inaugurated by then prime minister Manmohan Singh";
+    item2->m_imageURL = "notification2.jpg";
+    
+    m_notificationsItemsList.push_back(item2);
+    
+    ItemsDetailStruct* item3 = new ItemsDetailStruct();
+    item3->m_heading = "The Siachen Glacier, 5000 metres above sea level, is the highest battlefield in the world. And the Indian Army controls it.";
+    item3->m_imageURL = "notification3.jpg";
+    
+    m_notificationsItemsList.push_back(item3);
+    
+    ItemsDetailStruct* item4 = new ItemsDetailStruct();
+    item4->m_heading = "Soldiers of the Indian Army are considered among the best in jungle warfare.";
+    item4->m_imageURL = "notification4.jpg";
+    
+    m_notificationsItemsList.push_back(item4);
+    
+    
+}
+
+void MainScene::latestPostCallBack(Ref* pSender){
+
+    CCLOG("Inside latest post callback");
+    contentLayerE->setContentType(CONTENT_LATEST_POST);
+    contentLayerE->setContentList(m_latestItemsList, true);
+
+}
+
+void MainScene::ssbGuideCallBack(Ref* pSender){
+
+    CCLOG("Inside ssb Guide callback");
+}
+
+void MainScene::notificationCallBack(Ref* pSender){
+
+    CCLOG("Inside notifications callback");
+    contentLayerE->setContentType(CONTENT_NOTIFICATIONS);
+    contentLayerE->setContentList(m_notificationsItemsList, true);
+    
+}
+
 void MainScene::shareItemCallBack(Ref* pSender){
 
     CCLOG("Inside share item callback");
@@ -171,7 +355,7 @@ void MainScene::createPageView(){
         imageToBeAdded->setScaleY(scaleY);
         
         // create masked image and position to center it on screen
-        Node* clipNode = createRoundedRectMaskNode(maskSize, radius, 1.0f, 10);
+        Node* clipNode = AppDelegate::getDelegate()->createRoundedRectMaskNode(maskSize, radius, 1.0f, 10);
         imageToBeAdded->setAnchorPoint(Vec2(0,0));
         clipNode->setAnchorPoint(Vec2(0,0));
         clipNode->addChild(imageToBeAdded);
@@ -207,66 +391,6 @@ void MainScene::pageViewEvent(cocos2d::Ref *pSender,cocos2d::ui::PageView::Event
             break ;
     }
 }
-
-void MainScene::appendCubicBezier(int startPoint, std::vector<Vec2>& verts, const Vec2& from, const Vec2& control1, const Vec2& control2, const Vec2& to, uint32_t segments)
-{
-    float t = 0;
-    for(int i = 0; i < segments; i++)
-    {
-        float x = powf(1 - t, 3) * from.x + 3.0f * powf(1 - t, 2) * t * control1.x + 3.0f * (1 - t) * t * t * control2.x + t * t * t * to.x;
-        float y = powf(1 - t, 3) * from.y + 3.0f * powf(1 - t, 2) * t * control1.y + 3.0f * (1 - t) * t * t * control2.y + t * t * t * to.y;
-        verts[startPoint + i] = Vec2(x,y);
-        t += 1.0f / segments;
-    }
-}
-
-Node* MainScene::createRoundedRectMaskNode(Size size, float radius, float borderWidth, int cornerSegments)
-{
-    const float kappa = 0.552228474;
-    float oneMinusKappa = (1.0f-kappa);
-    
-    // define corner control points
-    std::vector<Vec2> verts(16);
-    
-    verts[0] = Vec2(0, radius);
-    verts[1] = Vec2(0, radius * oneMinusKappa);
-    verts[2] = Vec2(radius * oneMinusKappa, 0);
-    verts[3] = Vec2(radius, 0);
-    
-    verts[4] = Vec2(size.width - radius, 0);
-    verts[5] = Vec2(size.width - radius * oneMinusKappa, 0);
-    verts[6] = Vec2(size.width, radius * oneMinusKappa);
-    verts[7] = Vec2(size.width, radius);
-    
-    verts[8] = Vec2(size.width, size.height - radius);
-    verts[9] = Vec2(size.width, size.height - radius * oneMinusKappa);
-    verts[10] = Vec2(size.width - radius * oneMinusKappa, size.height);
-    verts[11] = Vec2(size.width - radius, size.height);
-    
-    verts[12] = Vec2(radius, size.height);
-    verts[13] = Vec2(radius * oneMinusKappa, size.height);
-    verts[14] = Vec2(0, size.height - radius * oneMinusKappa);
-    verts[15] = Vec2(0, size.height - radius);
-    
-    // result
-    std::vector<Vec2> polyVerts(4 * cornerSegments + 1);
-    
-    // add corner arc segments
-    appendCubicBezier(0 * cornerSegments, polyVerts, verts[0], verts[1], verts[2], verts[3], cornerSegments);
-    appendCubicBezier(1 * cornerSegments, polyVerts, verts[4], verts[5], verts[6], verts[7], cornerSegments);
-    appendCubicBezier(2 * cornerSegments, polyVerts, verts[8], verts[9], verts[10], verts[11], cornerSegments);
-    appendCubicBezier(3 * cornerSegments, polyVerts, verts[12], verts[13], verts[14], verts[15], cornerSegments);
-    // close path
-    polyVerts[4 * cornerSegments] = verts[0];
-    
-    // draw final poly into mask
-    auto shapeMask = DrawNode::create();
-    shapeMask->drawPolygon(&polyVerts[0], polyVerts.size(), Color4F::WHITE, 0.0f, Color4F::WHITE);
-    
-    // create clip node with draw node as stencil (mask)
-    return ClippingNode::create(shapeMask);
-}
-
 
 void MainScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
 {

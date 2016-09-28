@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/MainScene.cpp"
-            timestampString = "496670450.294818"
+            timestampString = "496750492.513408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
             landmarkName = "MainScene::listItemCallback(Ref* pSender)"
             landmarkType = "5">
          </BreakpointContent>
@@ -49,38 +49,70 @@
             endingLineNumber = "87"
             landmarkName = "SideLayer::runEnterAnimation()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SideLayer::runEnterAnimation()"
-                  moduleName = "AimSSB-mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/machintosh/Desktop/testproject/gitAimSSB/aimSSB/Classes/SideLayer.cpp"
-                  timestampString = "496666252.69633"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SideLayer::runEnterAnimation()::$_1::operator()() const"
-                  moduleName = "AimSSB-mobile"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/machintosh/Desktop/testproject/gitAimSSB/aimSSB/Classes/SideLayer.cpp"
-                  timestampString = "496666252.696568"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "96"
-                  endingLineNumber = "96"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/ContentLayer.cpp"
+            timestampString = "496750651.798172"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "ContentLayer::setContentList(std::vector&lt;ItemsDetailStruct*&gt; contentList, bool isReload)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/ContentLayer.cpp"
+            timestampString = "496750527.908759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/ContentLayer.cpp"
+            timestampString = "496750528.964535"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/ContentLayer.cpp"
+            timestampString = "496750556.884955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

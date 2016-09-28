@@ -16,6 +16,8 @@
 #include "extensions/cocos-ext.h"
 #include "ui/UIPageView.h"
 #include "SideLayer.hpp"
+#include "commonClasses.h"
+#include "ContentLayer.h"
 
 using namespace cocos2d::ui;
 USING_NS_CC;
@@ -38,23 +40,36 @@ public:
     virtual void onExit();
 
     LayerColor* m_backgroundLayer;
+    ContentLayer* contentLayerE;
     cocos2d::ui::PageView* m_pageView;
+    cocos2d::Vector<cocos2d::MenuItem*> gameSelectionMenuItems;
+    std::vector<ItemsDetailStruct*> m_latestItemsList;
+    std::vector<ItemsDetailStruct*> m_notificationsItemsList;
     
     int m_numOfPages;
     bool isReverse;
     
+    MenuItemSprite* latestPostItem;
+    MenuItemSprite* ssbGuideItem;
+    MenuItemSprite* notificationItem;
+    
+    
     void createBackground();
     void createPageView();
+    void createMenuItems();
     void updatePages(float dt);
+    void createContentHolder();
+    
+    void setDataLatestItem();
+    void setDataNotificationItem();
     
     void pageViewEvent(cocos2d::Ref *sender , cocos2d::ui::PageView::EventType type );
-    void appendCubicBezier(int startPoint, std::vector<Vec2>& verts, const Vec2& from, const Vec2& control1, const Vec2& control2, const Vec2& to, uint32_t segments);
-    Node* createRoundedRectMaskNode(Size size, float radius, float borderWidth, int cornerSegments);
-    
-    
     
     void listItemCallback(Ref* pSender);
     void shareItemCallBack(Ref* pSender);
+    void latestPostCallBack(Ref* pSender);
+    void ssbGuideCallBack(Ref* pSender);
+    void notificationCallBack(Ref* pSender);
     
     CREATE_FUNC(MainScene);
     
