@@ -75,6 +75,7 @@ void MainScene::onEnter()
     createPageView();
     setDataLatestItem();
     setDataNotificationItem();
+    setSSBGuideList();
     
     createMenuItems();
     createContentHolder();
@@ -125,7 +126,7 @@ void MainScene::createBackground(){
     headerLayer->setPosition(Vec2(0, visibleSize.height - visibleSize.height * 0.1));
     this->addChild(headerLayer);
     
-    Label* headerText = Label::createWithTTF("AIM SSB",FONT_ARM_WRESTLER,60);
+    Label* headerText = Label::createWithTTF("AIM SSB",FONT_HEADLINE,60);
     headerText->setPosition(Vec2(headerLayer->getContentSize().width * 0.5, headerLayer->getContentSize().height * 0.5));
     headerLayer->addChild(headerText);
     
@@ -172,31 +173,30 @@ void MainScene::createMenuItems(){
     menuImage2Pressed->setScale(0.95);
     menuImage3Pressed->setScale(0.95);
     
-    Label* latestLabel = Label::createWithTTF("Latest Post", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    Label* latestLabel = Label::createWithTTF("Latest Post", FONT_HEADLINE, FONT_SIZE_MENUITEM);
     latestLabel->setPosition(Vec2(menuImage1->getContentSize().width * 0.5, menuImage1->getContentSize().height * 0.5));
     menuImage1->addChild(latestLabel);
     
-    Label* ssbLabel = Label::createWithTTF("SSB Guide", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    Label* ssbLabel = Label::createWithTTF("SSB Guide", FONT_HEADLINE, FONT_SIZE_MENUITEM);
     ssbLabel->setPosition(Vec2(menuImage2->getContentSize().width * 0.5, menuImage2->getContentSize().height * 0.5));
     menuImage2->addChild(ssbLabel);
     
-    Label* notificationLabel = Label::createWithTTF("Notifications", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM);
+    Label* notificationLabel = Label::createWithTTF("Notifications", FONT_HEADLINE, FONT_SIZE_MENUITEM);
     notificationLabel->setPosition(Vec2(menuImage3->getContentSize().width * 0.5, menuImage3->getContentSize().height * 0.5));
     menuImage3->addChild(notificationLabel);
     
     //for pressed effect
-    Label* latestLabel2 = Label::createWithTTF("Latest Post", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    Label* latestLabel2 = Label::createWithTTF("Latest Post", FONT_HEADLINE, FONT_SIZE_MENUITEM - 1);
     latestLabel2->setPosition(Vec2(menuImage1Pressed->getContentSize().width * 0.5, menuImage1Pressed->getContentSize().height * 0.5));
     menuImage1Pressed->addChild(latestLabel2);
     
-    Label* ssbLabel2 = Label::createWithTTF("SSB Guide", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    Label* ssbLabel2 = Label::createWithTTF("SSB Guide", FONT_HEADLINE, FONT_SIZE_MENUITEM - 1);
     ssbLabel2->setPosition(Vec2(menuImage2Pressed->getContentSize().width * 0.5, menuImage2Pressed->getContentSize().height * 0.5));
     menuImage2Pressed->addChild(ssbLabel2);
     
-    Label* notificationLabel2 = Label::createWithTTF("Notifications", FONT_ARM_WRESTLER, FONT_SIZE_MENUITEM - 1);
+    Label* notificationLabel2 = Label::createWithTTF("Notifications", FONT_HEADLINE, FONT_SIZE_MENUITEM - 1);
     notificationLabel2->setPosition(Vec2(menuImage3Pressed->getContentSize().width * 0.5, menuImage3Pressed->getContentSize().height * 0.5));
     menuImage3Pressed->addChild(notificationLabel2);
-    
     
     
     latestPostItem = MenuItemSprite::create(menuImage1, menuImage1Pressed, CC_CALLBACK_1(MainScene::latestPostCallBack,this));
@@ -206,7 +206,6 @@ void MainScene::createMenuItems(){
     this->gameSelectionMenuItems.pushBack(latestPostItem);
     this->gameSelectionMenuItems.pushBack(ssbGuideItem);
     this->gameSelectionMenuItems.pushBack(notificationItem);
-    
     
     latestPostItem->setPosition(Vec2(latestPostItem->getContentSize().width * 0.6, visibleSize.height * 0.55));
     ssbGuideItem->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.55));
@@ -258,6 +257,34 @@ void MainScene::setDataLatestItem(){
 
 }
 
+void MainScene::setSSBGuideList(){
+
+    ItemsDetailStruct* item1 = new ItemsDetailStruct();
+    item1->m_heading = "INTRODUCTION";
+    m_ssbGuideItemsList.push_back(item1);
+    
+    ItemsDetailStruct* item2 = new ItemsDetailStruct();
+    item2->m_heading = "SCREENING";
+    m_ssbGuideItemsList.push_back(item2);
+    
+    ItemsDetailStruct* item3 = new ItemsDetailStruct();
+    item3->m_heading = "PSYCHOLOGICAL TEST";
+    m_ssbGuideItemsList.push_back(item3);
+    
+    ItemsDetailStruct* item4 = new ItemsDetailStruct();
+    item4->m_heading = "GTO";
+    m_ssbGuideItemsList.push_back(item4);
+    
+    ItemsDetailStruct* item5 = new ItemsDetailStruct();
+    item5->m_heading = "PERSONAL INTERVIEW";
+    m_ssbGuideItemsList.push_back(item5);
+    
+    ItemsDetailStruct* item6 = new ItemsDetailStruct();
+    item6->m_heading = "CONFERENCE";
+    m_ssbGuideItemsList.push_back(item6);
+
+}
+
 void MainScene::setDataNotificationItem(){
 
     ItemsDetailStruct* item1 = new ItemsDetailStruct();
@@ -298,6 +325,9 @@ void MainScene::latestPostCallBack(Ref* pSender){
 void MainScene::ssbGuideCallBack(Ref* pSender){
 
     CCLOG("Inside ssb Guide callback");
+    contentLayerE->setContentType(CONTENT_SSB_GUIDE);
+    contentLayerE->setContentList(m_ssbGuideItemsList, true);
+
 }
 
 void MainScene::notificationCallBack(Ref* pSender){

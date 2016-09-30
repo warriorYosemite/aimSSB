@@ -183,7 +183,7 @@ TableViewCell* SideLayer::tableCellAtIndex(TableView *table, ssize_t idx)
     icon->setPosition(Vec2(20, rowHeight * 0.5));
     cell->addChild(icon);
     
-    Label* nameLabel = Label::createWithTTF(name, FONT_HEADLINE, 27);
+    Label* nameLabel = Label::createWithTTF(name, FONT_DOSIS, 27);
     nameLabel->setAnchorPoint(Vec2(0, 0.5));
     nameLabel->setColor(Color3B::BLACK);
     nameLabel->setPosition(Vec2(tableWidth * 0.15, rowHeight * 0.5));
@@ -268,7 +268,7 @@ void SideLayer::createContentLayer(){
     m_contentLayer->addChild(quoteLayer);
     
     std::string message = " 'If a man says he is not afraid of dying,\nhe is either lying or is a Gurkha.' \n\n -Field Marshal Sam Manekshaw";
-    Label* quoteOfTheDay = Label::createWithTTF(message, FONT_CONTENT, 22);
+    Label* quoteOfTheDay = Label::createWithTTF(message, FONT_SOURCE_SANS, 22);
     quoteOfTheDay->setAlignment(cocos2d::TextHAlignment::CENTER);
     quoteOfTheDay->setAnchorPoint(Vec2(0.5,0.5));
     quoteOfTheDay->setPosition(Vec2(quoteLayer->getContentSize().width * 0.5, quoteLayer->getContentSize().height * 0.5));

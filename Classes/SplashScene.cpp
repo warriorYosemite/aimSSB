@@ -52,7 +52,7 @@ void SplashScene::onEnter()
     this->addChild(m_logo);
     
     
-    m_appName = Label::createWithTTF("AIM SSB", FONT_MOLOT_TTF, 100);
+    m_appName = Label::createWithTTF("AIM SSB", FONT_HEADLINE, 100);
     m_appName->setPosition(Vec2(visibleSize.width * 0.5, visibleSize.height * 0.3));
     m_appName->setOpacityModifyRGB(true);
     m_appName->setOpacity(0);

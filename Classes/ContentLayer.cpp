@@ -67,7 +67,15 @@ void ContentLayer::createTableView(){
 
 Size ContentLayer::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
 {
-    rowHeight = 150;
+    if (m_contentType == CONTENT_SSB_GUIDE){
+    
+        rowHeight = tableHeight / 6;
+    }
+    else
+    {
+        
+        rowHeight = 150;
+    }
     return Size(tableWidth, rowHeight);
 }
 
@@ -143,7 +151,7 @@ TableViewCell* ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)
         std::string formattedHeadline = AppDelegate::getDelegate()->getTrimmedStringWithRange(headingText, 80);
         formattedHeadline.insert(40,"-\n");
         
-        Label* headline = Label::createWithTTF(formattedHeadline, FONT_HEADLINE, 21);
+        Label* headline = Label::createWithTTF(formattedHeadline, FONT_SOURCE_SANS, 21);
         headline->setAnchorPoint(Vec2(0, 0.5));
         headline->setColor(Color3B::BLACK);
         headline->setPosition(Vec2(200, cellBg->getContentSize().height * 0.75));
@@ -159,13 +167,38 @@ TableViewCell* ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)
         Label* contentLine = Label::createWithTTF(formattedContent, FONT_CONTENT, 20);
         contentLine->setAnchorPoint(Vec2(0, 0.5));
         contentLine->setColor(Color3B::GRAY);
-        contentLine->setPosition(Vec2(200, cellBg->getContentSize().height * 0.4));
+        contentLine->setPosition(Vec2(200, cellBg->getContentSize().height * 0.375));
         cellBg->addChild(contentLine);
         
     }
     else if (m_contentType == CONTENT_SSB_GUIDE){
     
-    
+        std::string headingText = m_contentList.at(idx)->m_heading;
+        
+        LayerColor* cellBg = LayerColor::create(Color4B(255,255,255,200), tableWidth, rowHeight - 7);
+        cellBg->setTag(CELL_BG_TAG);
+        cellBg->setPosition(Vec2(0,0));
+        cell->addChild(cellBg);
+        
+        std::string serial = std::to_string(idx + 1);
+        
+        Sprite* numberBg = Sprite::create("blueCircle.png");
+        numberBg->setAnchorPoint(Vec2(0, 0.5));
+        numberBg->setPosition(Vec2(20, cellBg->getContentSize().height * 0.5));
+        cellBg->addChild(numberBg);
+        
+        Label* serialNo = Label::createWithTTF(serial, FONT_DOSIS, 30);
+        serialNo->setAnchorPoint(Vec2(0.5, 0.5));
+        serialNo->setColor(Color3B::WHITE);
+        serialNo->setPosition(Vec2(numberBg->getContentSize().width * 0.5, numberBg->getContentSize().height * 0.5));
+        numberBg->addChild(serialNo);
+        
+        Label* headingName = Label::createWithTTF(headingText, FONT_DOSIS, 30);
+        headingName->setAnchorPoint(Vec2(0, 0.5));
+        headingName->setColor(Color3B::BLACK);
+        headingName->setPosition(Vec2(80, cellBg->getContentSize().height * 0.5));
+        cellBg->addChild(headingName);
+        
     }
     return cell;
     
@@ -178,6 +211,10 @@ ssize_t ContentLayer::numberOfCellsInTableView(TableView *table)
 
 void ContentLayer::createBackground()
 {
+    
+    
+//    LayerColor* bgLayer = LayerColor::create(Color4B(51,64,28,255), this->getContentSize().width, this->getContentSize().height);
+    
     LayerColor* bgLayer = LayerColor::create(Color4B(221,221,207, 255), this->getContentSize().width, this->getContentSize().height);
     bgLayer->setPosition(Vec2(0,0));
     this->addChild(bgLayer);

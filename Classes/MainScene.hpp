@@ -45,6 +45,7 @@ public:
     cocos2d::Vector<cocos2d::MenuItem*> gameSelectionMenuItems;
     std::vector<ItemsDetailStruct*> m_latestItemsList;
     std::vector<ItemsDetailStruct*> m_notificationsItemsList;
+    std::vector<ItemsDetailStruct*> m_ssbGuideItemsList;
     
     int m_numOfPages;
     bool isReverse;
@@ -62,6 +63,7 @@ public:
     
     void setDataLatestItem();
     void setDataNotificationItem();
+    void setSSBGuideList();
     
     void pageViewEvent(cocos2d::Ref *sender , cocos2d::ui::PageView::EventType type );
     
