@@ -60,6 +60,7 @@ public:
     void createMenuItems();
     void updatePages(float dt);
     void createContentHolder();
+    void createArticleLayer();
     
     void setDataLatestItem();
     void setDataNotificationItem();

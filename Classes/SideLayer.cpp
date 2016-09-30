@@ -104,6 +104,12 @@ void SideLayer::setDataList(){
     item3->m_imageURL = ICON_PATH"icon3.png";
     m_contentList.push_back(item3);
     
+    ItemsDetailStruct* item12 = new ItemsDetailStruct();
+    item12->m_heading = "Read A Story";
+    item12->m_imageURL = ICON_PATH"icon12.png";
+    m_contentList.push_back(item12);
+    
+    
     ItemsDetailStruct* item4 = new ItemsDetailStruct();
     item4->m_heading = "SSB Centres";
     item4->m_imageURL = ICON_PATH"icon4.png";

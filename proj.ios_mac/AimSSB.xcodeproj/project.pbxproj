@@ -54,6 +54,7 @@
 		5B0B06361D95002D002CE936 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B0B06341D95002D002CE936 /* SplashScene.cpp */; };
 		5B0B06391D95067F002CE936 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B0B06381D95067F002CE936 /* logo.png */; };
 		5B406DB51D9E5C2100EDC14C /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B406DB41D9E5C2100EDC14C /* blueCircle.png */; };
+		5B406DB91D9E63DF00EDC14C /* ArticleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B406DB71D9E63DF00EDC14C /* ArticleLayer.cpp */; };
 		5B4EEAA91D9BAF7B00B7E00C /* default_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EEAA81D9BAF7B00B7E00C /* default_image.png */; };
 		5B4EEAAC1D9BB6B700B7E00C /* latest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EEAAB1D9BB6B700B7E00C /* latest.jpg */; };
 		5B4EEAB11D9BBE8D00B7E00C /* latest2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EEAAD1D9BBE8D00B7E00C /* latest2.jpg */; };
@@ -171,6 +172,8 @@
 		5B0B06371D950198002CE936 /* constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
 		5B0B06381D95067F002CE936 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		5B406DB41D9E5C2100EDC14C /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
+		5B406DB71D9E63DF00EDC14C /* ArticleLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArticleLayer.cpp; sourceTree = "<group>"; };
+		5B406DB81D9E63DF00EDC14C /* ArticleLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ArticleLayer.hpp; sourceTree = "<group>"; };
 		5B4EEAA81D9BAF7B00B7E00C /* default_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_image.png; sourceTree = "<group>"; };
 		5B4EEAAB1D9BB6B700B7E00C /* latest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = latest.jpg; sourceTree = "<group>"; };
 		5B4EEAAD1D9BBE8D00B7E00C /* latest2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = latest2.jpg; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 				5BE225C91D9AA82D00A040FD /* commonClasses.h */,
 				5BE225C61D9AA7D100A040FD /* ContentLayer.cpp */,
 				5BE225C71D9AA7D100A040FD /* ContentLayer.h */,
+				5B406DB71D9E63DF00EDC14C /* ArticleLayer.cpp */,
+				5B406DB81D9E63DF00EDC14C /* ArticleLayer.hpp */,
 				5B0B06341D95002D002CE936 /* SplashScene.cpp */,
 				5B0B06351D95002D002CE936 /* SplashScene.h */,
 				5BE225AC1D9A399300A040FD /* MainScene.cpp */,
@@ -581,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				5B406DB91D9E63DF00EDC14C /* ArticleLayer.cpp in Sources */,
 				5BE225C81D9AA7D100A040FD /* ContentLayer.cpp in Sources */,
 				5B0B06361D95002D002CE936 /* SplashScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,

@@ -9,7 +9,7 @@
 #include "MainScene.hpp"
 #include "AppDelegate.h"
 #include "constant.h"
-
+#include "ArticleLayer.hpp"
 
 USING_NS_CC_EXT;
 using namespace std;
@@ -314,6 +314,13 @@ void MainScene::setDataNotificationItem(){
     
 }
 
+void MainScene::createArticleLayer(){
+
+    ArticleLayer* articleLayer = ArticleLayer::createLayer();
+    articleLayer->setPosition(Vec2(0,0));
+    this->addChild(articleLayer, 10);
+
+}
 void MainScene::latestPostCallBack(Ref* pSender){
 
     CCLOG("Inside latest post callback");
@@ -427,7 +434,7 @@ void MainScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent)
     pEvent->stopPropagation();
     if(keyCode == EventKeyboard::KeyCode::KEY_BACK || keyCode == EventKeyboard::KeyCode::KEY_ESCAPE)
     {
-//        backButton(NULL);
+        Director::getInstance()->end();
     }
 }
 

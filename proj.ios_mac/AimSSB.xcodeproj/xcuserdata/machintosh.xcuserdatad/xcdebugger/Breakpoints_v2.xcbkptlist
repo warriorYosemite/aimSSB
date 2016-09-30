@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SideLayer.cpp"
-            timestampString = "496762181.101624"
+            timestampString = "496918639.471915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "SideLayer::runExitAnimation()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/MainScene.cpp"
-            timestampString = "496916859.05113"
+            timestampString = "496925876.677953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "MainScene::listItemCallback(Ref* pSender)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/SideLayer.cpp"
-            timestampString = "496762181.101624"
+            timestampString = "496918639.471915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "SideLayer::runEnterAnimation()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,60 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/ContentLayer.cpp"
-            timestampString = "496917636.892"
+            timestampString = "496925786.468677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "230"
-            endingLineNumber = "230"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "ContentLayer::setContentList(std::vector&lt;ItemsDetailStruct*&gt; contentList, bool isReload)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/ContentLayer.cpp"
-            timestampString = "496907142.847671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/ContentLayer.cpp"
-            timestampString = "496907142.847671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/ContentLayer.cpp"
-            timestampString = "496907142.847671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

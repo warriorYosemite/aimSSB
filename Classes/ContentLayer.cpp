@@ -5,7 +5,7 @@
 
 #include "ContentLayer.h"
 #include "AppDelegate.h"
-
+#include "MainScene.hpp"
 
 using namespace cocos2d::extension;
 using namespace std;
@@ -85,6 +85,13 @@ void ContentLayer::tableCellTouched(TableView *table, TableViewCell *cell)
     CCLOG("CELL %zd ", cell->getIdx());
     
     int idx = (int)cell->getIdx();
+    
+//    MainScene* mainSceneLayer = dynamic_cast<MainScene*>(Director::getInstance()->getRunningScene()->getChildren().at(1));
+//    if (mainSceneLayer != NULL)
+//    {
+//        mainSceneLayer->createArticleLayer();
+//    }
+
 
 }
 
@@ -203,6 +210,7 @@ TableViewCell* ContentLayer::tableCellAtIndex(TableView *table, ssize_t idx)
     return cell;
     
 }
+
 ssize_t ContentLayer::numberOfCellsInTableView(TableView *table)
 {
     int size = (int)m_contentList.size();
