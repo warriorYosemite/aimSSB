@@ -49,6 +49,8 @@ public:
     
     int m_numOfPages;
     bool isReverse;
+    CONTENT_TYPE m_currContentType;
+    
     
     MenuItemSprite* latestPostItem;
     MenuItemSprite* ssbGuideItem;
@@ -60,7 +62,7 @@ public:
     void createMenuItems();
     void updatePages(float dt);
     void createContentHolder();
-    void createArticleLayer();
+    void createArticleLayer(ItemsDetailStruct* data);
     
     void setDataLatestItem();
     void setDataNotificationItem();

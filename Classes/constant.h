@@ -17,8 +17,13 @@
 
 #define FONT_SOURCE_SANS        "fonts/source-sans-pro.regular.ttf"
 #define FONT_SOURCE_SANS_LIGHT  "fonts/source-sans-pro.light.ttf"
+#define FONT_LIBRE              "fonts/LibreFranklin-Medium.ttf"
+#define FONT_LIBRE_LIGHT        "fonts/LibreFranklin-Light.ttf"
+#define FONT_ROBOTO_LIGHT       "fonts/Roboto-Light.ttf"
+
 
 #define ICON_PATH               "icons/"
+#define IMAGE_PATH              "images/"
 
 
 #endif // __CONSTANTS_H__

@@ -55,6 +55,7 @@ void MainScene::onEnter()
     m_keyboardListener = NULL;
     contentLayerE = NULL;
     isReverse = false;
+    m_currContentType = CONTENT_LATEST_POST;
     
     visibleSize = Director::getInstance()->getVisibleSize();
 
@@ -222,7 +223,8 @@ void MainScene::setDataLatestItem(){
 
     ItemsDetailStruct* item1 = new ItemsDetailStruct();
     item1->m_heading = "Uri attack: Security agencies suspect LeT hand,seized maps depict local topography";
-    item1->m_content = "The maps showed various places of Uri including the Brigade Headquarters and other installations of the town, about 75 km North of Srinagar.";
+    item1->m_content = "Uri (J&K): Two maps depicting the general topography of Uri were recovered from the four terrorists who stormed into an Army camp here even as the army intensified efforts to identify the exact stretch along the Line of Control (LoC) from where they entered India. \n \n Official sources said today that besides arms and ammunition, two maps showing general area of Uri were recovered from the four slain terrorists, who are now believed to be from Pakistan-based Lashker-e-Taiba(LeT). \n \n The maps showed various places of Uri including the Brigade Headquarters and other installations of this town, about 75 km North of Srinagar. \n \n The place is strategically important in view of the power project operated by National Hydel Power Corporation(NHPC) \n \n In the meantime, Army has contacted heads of 12 villages located above the Brigade headquarters to ascertain whether they could throw some light about the infiltration, the sources said, adding this was a part of domination drill being conducted by the army off and on along the LoC. \n \n The army was conducting search operations in various villages along the LoC to find out whether the four terrorists, who carried out the audacious attack at the camp on September 18, had left tell-tale signs. There were reports that that Army had intensified searches in Charunda and Gollahan villages to ascertain whether the terrorists had taken shelter before reaching the army camp at Uri. Both the villages have a combined household of 603 and a population of less than 4,000. \n \n  The Jammu and Kashmir Police has handed over to NIA the call details and internet data usage of all active cellphones and broadband connections in Uri town for he period of 24 hours prior to daring attack on the army base, the sources said. \n \n  The NIA team, which arrived here on Tuesday, today finished the documentation process which includes seizure of the arms, ammunition and other articles.\n \n  The NIA along with technical experts from other security agencies is also trying to retrieve data from the Global Positioning System (GPS) sets recovered from the slain militants. \n \n  The NIA Tuesday registered a case to probe the terror attack at the Army installation in Uri. \n \n The NIA team would prepare a dossier and may make a formal request to Pakistan once the identity of the four was ascertained. \n \n Army has also instituted an inquiry into the attack with preliminary investigation suggesting the terrorists had entered the area at least a day before mounting the brazen assault. \n \n The inquiry besides ascertaining lapses, if any, would also suggest measures to prevent such attacks in the future as Pakistani-based groups were indulging more in shallow infiltration, which means that terrorists strike the first available installation after crossing the LoC.";
+    
     item1->m_imageURL = "latest.jpg";
     
     m_latestItemsList.push_back(item1);
@@ -314,9 +316,17 @@ void MainScene::setDataNotificationItem(){
     
 }
 
-void MainScene::createArticleLayer(){
 
+
+void MainScene::createArticleLayer(ItemsDetailStruct* data){
+
+    if (m_currContentType == CONTENT_SSB_GUIDE){
+    
+        return;
+    }
+    
     ArticleLayer* articleLayer = ArticleLayer::createLayer();
+    articleLayer->setDataElement(data);
     articleLayer->setPosition(Vec2(0,0));
     this->addChild(articleLayer, 10);
 
@@ -324,6 +334,9 @@ void MainScene::createArticleLayer(){
 void MainScene::latestPostCallBack(Ref* pSender){
 
     CCLOG("Inside latest post callback");
+    
+    m_currContentType = CONTENT_LATEST_POST;
+    
     contentLayerE->setContentType(CONTENT_LATEST_POST);
     contentLayerE->setContentList(m_latestItemsList, true);
 
@@ -332,6 +345,9 @@ void MainScene::latestPostCallBack(Ref* pSender){
 void MainScene::ssbGuideCallBack(Ref* pSender){
 
     CCLOG("Inside ssb Guide callback");
+    
+    m_currContentType = CONTENT_SSB_GUIDE;
+    
     contentLayerE->setContentType(CONTENT_SSB_GUIDE);
     contentLayerE->setContentList(m_ssbGuideItemsList, true);
 
@@ -340,6 +356,8 @@ void MainScene::ssbGuideCallBack(Ref* pSender){
 void MainScene::notificationCallBack(Ref* pSender){
 
     CCLOG("Inside notifications callback");
+    m_currContentType = CONTENT_NOTIFICATIONS;
+    
     contentLayerE->setContentType(CONTENT_NOTIFICATIONS);
     contentLayerE->setContentList(m_notificationsItemsList, true);
     

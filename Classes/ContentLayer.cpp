@@ -86,11 +86,12 @@ void ContentLayer::tableCellTouched(TableView *table, TableViewCell *cell)
     
     int idx = (int)cell->getIdx();
     
-//    MainScene* mainSceneLayer = dynamic_cast<MainScene*>(Director::getInstance()->getRunningScene()->getChildren().at(1));
-//    if (mainSceneLayer != NULL)
-//    {
-//        mainSceneLayer->createArticleLayer();
-//    }
+    MainScene* mainSceneLayer = dynamic_cast<MainScene*>(Director::getInstance()->getRunningScene()->getChildren().at(1));
+    if (mainSceneLayer != NULL)
+    {
+        ItemsDetailStruct* readData = m_contentList.at(idx);
+        mainSceneLayer->createArticleLayer(readData);
+    }
 
 
 }

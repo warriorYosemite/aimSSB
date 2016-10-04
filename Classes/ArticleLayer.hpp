@@ -33,6 +33,12 @@ class ArticleLayer : public cocos2d::Layer//, public ScrollView, public cocos2d:
     LayerColor* m_contentLayer;
     
     ScrollView* m_scrollView;
+    Sprite* m_contentImage;
+    Size containerSize;
+    
+    Label* m_headerLine;
+    Label* m_contentPara;
+    ItemsDetailStruct* m_dataElement;
     
     std::vector<ItemsDetailStruct*> m_contentList;
 
@@ -48,11 +54,16 @@ public:
     
     void createBackground();
     void createScrollView();
-    
+    void createReadContent();
+    void createBackButton();
+    void setDataElement(ItemsDetailStruct* tempData);
+    void updateContent(bool isUpdate);
     
     CREATE_FUNC(ArticleLayer);
     
     virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *pEvent) override;
+    void backButton(Ref* pSender);
+    
     
 //    virtual void scrollViewDidScroll(ScrollView* view) override;
 //    virtual void scrollViewDidZoom(ScrollView* view)  override {}
